@@ -6,6 +6,7 @@ import axios from 'axios';
 import { assets } from '../../assets/assets'
 import { StoreContext } from '../../context/StoreContext';
 const LoginPopup = ({ setShowLogin }) => {
+    let newUrl = ""
     const { token, setToken } = useContext(StoreContext);
     const [currState, setCurrState] = useState("Login")
 
@@ -29,7 +30,7 @@ const LoginPopup = ({ setShowLogin }) => {
         else {
             newUrl += "/api/user/register"
         }
-      
+        console.log("newurl:",newUrl);
         const response = await axios.post(newUrl, data);
         if (response.data.success) {
             setToken(response.data.token);
