@@ -15,5 +15,5 @@ export const assets = {
 }
 
 // export const url = 'http://localhost:4000'
-export const url = 'https://food-del-app-x4zl.onrender.com'
+export const url = 'https://food-delivery-server-9cus.onrender.com'
 
