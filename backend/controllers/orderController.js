@@ -6,7 +6,7 @@ const stripe = new Stripe(process.env.STRIPE_SECRET_KEY)
 
 const placeOrder = async (req, res) => {
     // const frontendurl = "http://localhost:5173"
-    const frontendurl = "https://food-del-app-user.onrender.com"
+    const frontendurl = "https://food-delivery-application-yr97.onrender.com"
     try {
         const newOrder = new orderModel({
             userId: req.userId,
@@ -52,6 +52,22 @@ const placeOrder = async (req, res) => {
         res.json({ success: false, message: "Error" })
     }
 }
+const verifyOrderGet = async (req, res) => {
+    const { orderId, success } = req.query;
+    try {
+        if (success === "true") {
+            await orderModel.findByIdAndUpdate(orderId, { payment: true });
+            res.send(`<h2>✅ Payment successful for order ID: ${orderId}</h2>`);
+        } else {
+            await orderModel.findByIdAndDelete(orderId);
+            res.send(`<h2>❌ Payment failed or was cancelled for order ID: ${orderId}</h2>`);
+        }
+    } catch (e) {
+        console.log(e);
+        res.status(500).send(`<h2>❌ Server error during payment verification</h2>`);
+    }
+};
+
 
 
 const verifyOrder = async (req, res) => {
@@ -110,4 +126,4 @@ const updateStatus = async (req, res) => {
     }
 }
 
-export { placeOrder, verifyOrder, userOrders, adminOrders, updateStatus }
+export { placeOrder, verifyOrder, userOrders, verifyOrderGet, adminOrders, updateStatus }
