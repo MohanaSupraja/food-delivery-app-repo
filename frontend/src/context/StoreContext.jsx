@@ -1,6 +1,6 @@
 import { createContext, useEffect, useState } from "react";
 import { url } from "../assets/assets";
-import axios from "axios";
+import axios from 'axios';
 
 export const StoreContext = createContext(null);
 
@@ -123,4 +123,4 @@ const StoreContextProvider = (props) => {
     );
 };
 
-export default StoreContextProvider;
+export { StoreContextProvider };

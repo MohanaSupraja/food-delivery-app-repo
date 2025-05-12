@@ -349,4 +349,5 @@ export const food_list = [
     }
 ]
 
-export const url = 'http://localhost:4000'
+// export const url = 'http://localhost:4000'
+export const url = 'https://food-del-app-x4zl.onrender.com'
